@@ -1,0 +1,84 @@
+---
+title: "451project"
+author: "Ziyan"
+date: "2023-11-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(readr)
+library(tidyverse)
+```
+
+## Interest: 
+We are interested in a data set about the air quality about New York City. 
+
+## Data: 
+In this data set, there is a Name variable which represents the different air quality indicators, like PM2.5, NO2, etc. The variable Measure indicates the type of measurement for air quality, such as “mean” (measured in parts per billion, or ppb). Time period variable is about the corresponding validate time period for the data set measurements. Geo place name indicates the different places where the measurements have been taken. 
+
+## Question_1:
+First, we are interested in the trend analysis of air quality over time in the whole NY City. To be specific, we plan to see the change of different indicators over time in NY.
+
+<br>
+For the interaction(shiny): we plan to make users choose their interested air quality indicators. 
+```{r, warning=FALSE}
+df <- read.csv("~/Desktop/451/Air_Quality.csv")
+
+c <- "Nitrogen dioxide (NO2)"
+
+
+
+df_1 <- df %>%
+  filter(Name == c, Geo.Place.Name == "New York City") %>%
+  separate(Time.Period, into = c("time", "year"), sep = "(?<=\\D)(?=\\d)", extra = "merge") %>%
+  mutate(year = as.numeric(trimws(year)), time = trimws(time)) %>%
+  filter(time == "Annual Average") %>%
+  arrange(year)
+
+
+ggplot(data = df_1, aes(x = year, y = Data.Value)) +
+  geom_line() +  
+  geom_point(size = 3) +  
+  scale_x_continuous(breaks = df_1$year) +  # This will show every year on the x-axis
+  ylim(0, max(df_1$Data.Value, na.rm = TRUE)+2) +  # Sets the y-axis to start at 0 and go up to the max value of Data.Value
+  theme_minimal() +
+  labs(x = "Year", y = "Mean concentration", title = paste("Annual Average", c, "Data Value Over Years in whole NY"),
+       caption = "*concentrations are measured in ppb (parts per billion).")+
+  theme(axis.text.x = element_text( vjust = 0.5, hjust = 0.5,size = 10),
+        axis.title.x = element_text( vjust = 0.5, hjust = 0.5,size = 12),
+        axis.text.y = element_text( vjust = 0.5, hjust = 0.5,size = 10),
+        axis.title.y = element_text( vjust = 0.5, hjust = 0.5,size = 12),
+        plot.title = element_text(size = 14, hjust = 0.3),
+        plot.caption = element_text(size = 9))
+
+
+```
+
+
+## Q2:
+Second, we would compare different indicators (probably through proportions) at a certain time period (average across a year) in a specific location. 
+
+## Q3:
+Third, we want to see if there is any correlation between different types of air pollutions (indicators) at NY across a given year.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
