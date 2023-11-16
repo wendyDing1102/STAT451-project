@@ -13,7 +13,9 @@ We are interested in a data set about the air quality about New York City. In th
 
 First, we are interested in the trend analysis of air quality over time in the whole NY City. To be specific, we plan to see the change of different indicators over time in NY.
 
-In our preliminary visualization, the annual average of NO2 value in the New York City over 2009-2021 has a decreasing trend, dropping from 23ppb to 15ppb. 
+* Overall Trend: There is a general decreasing trend in NO2 concentration over the years. The concentration starts at around 23 parts per billion (ppb) in 2009 and decreases to just below 15 ppb by 2021.
+
+* Yearly Changes: The largest drop appears to occur between 2009 and 2011. After 2011, the decreases are less steep but consistent, with some years showing slight increases or stability before continuing to decline.
 
 Second, we would compare different indicators (probably through proportions) at a certain time period (average across a year) in a specific location. 
 
