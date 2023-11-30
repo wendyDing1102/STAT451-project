@@ -1,3 +1,5 @@
+# This is for plot1 (line plot for Annual Average of No2 / PM 2.5 Data Value Over Years in 
+# whole NY (2009 - 2021)) and plot 3 ( the correlation between No2 / PM 2.5)
 library(shiny)
 library(ggplot2)
 library(dplyr)
