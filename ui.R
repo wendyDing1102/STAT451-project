@@ -1,17 +1,16 @@
 
 library(shinydashboard)
 library(leaflet)
-air_quality <- read.csv("Air_Quality.csv")
-header <- dashboardHeader(title = "Air quality")
+air_quality <- read.csv("~/Desktop/451/Air_Quality.csv")
+header <- dashboardHeader(title = "Air quality in NY")
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    menuItem("Distribution of different air quality indicators across location types",tabName = "2"),
-    menuItem("trend for NO2 and PM2.5 in NY",tabName = "1"),
-    menuItem("correlation between NO2 and PM2.5 across place in NY",tabName = "3")
-    
-    
+    menuItem(HTML("Distribution of different air quality <br/> indicators across location types"), tabName = "2"),
+    menuItem(HTML("Trend for NO2 and PM2.5 in NY"), tabName = "1"),
+    menuItem(HTML("Correlation between NO2 and PM2.5 <br/> across places in NY"), tabName = "3")
   )
+  
 )
 
 body <- dashboardBody(
