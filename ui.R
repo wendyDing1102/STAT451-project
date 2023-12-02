@@ -6,9 +6,9 @@ header <- dashboardHeader(title = "Air quality")
 
 sidebar <- dashboardSidebar(
   sidebarMenu(
-    menuItem("Distribution across geo type",tabName = "2"),
-    menuItem("t",tabName = "1"),
-    menuItem("t",tabName = "3")
+    menuItem("Distribution of different air quality indicators across location types",tabName = "2"),
+    menuItem("trend for NO2 and PM2.5 in NY",tabName = "1"),
+    menuItem("correlation between NO2 and PM2.5 across place in NY",tabName = "3")
     
     
   )
