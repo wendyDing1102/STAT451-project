@@ -2,7 +2,7 @@
 library(tidyverse)
 library(leaflet)
 
-air_quality <- read.csv("Air_Quality.csv")
+air_quality <- read.csv("~/Desktop/451/Air_Quality.csv")
 function(input, output, session) {
 
   
@@ -33,13 +33,10 @@ function(input, output, session) {
   })
   
   # trend
-#  dataplot <- reactive({
-#    air_quality |> 
-#      filter(Name==input$name & "Time.Period"==input$time)
-#    
-#  })
-#  print(dataplot())
+
   output$trend = renderPlot({ 
+    
+  
 
     thePlot = theData() %>%
       filter(Time.Period==input$time) %>%
@@ -54,8 +51,20 @@ function(input, output, session) {
     
     print(thePlot)
   })
+
   
   output$time_series=renderPlot({
+    withProgress(message = "Please wait", value = 0, {
+      
+      incProgress(1/3, detail = "Loading data")
+      Sys.sleep(0.5)
+      
+      incProgress(1/3, detail = "Drawing map")
+      Sys.sleep(0.5)
+      
+      incProgress(1/3, detail = "Finishing up")
+      Sys.sleep(0.5)
+    
     df_1 <- air_quality %>%
       filter(Name == input$indicator, Geo.Place.Name == input$location) %>%
       separate(Time.Period, into = c("time", "year"), sep = "(?<=\\D)(?=\\d)", extra = "merge") %>%
@@ -82,8 +91,21 @@ function(input, output, session) {
     
     print(theplot)
   })
-  
+  })
+    
   output$coorelation=renderPlot({
+    
+    withProgress(message = "Please wait", value = 0, {
+      
+      incProgress(1/3, detail = "Loading data")
+      Sys.sleep(0.5)
+      
+      incProgress(1/3, detail = "Drawing map")
+      Sys.sleep(0.5)
+      
+      incProgress(1/3, detail = "Finishing up")
+      Sys.sleep(0.5)
+    
     df_2 <- air_quality %>%
       filter(Geo.Place.Name == input$location) %>%
       separate(Time.Period, into = c("time", "year"), sep = "(?<=\\D)(?=\\d)", extra = "merge") %>%
@@ -121,6 +143,7 @@ function(input, output, session) {
     
     print(correlationPlot)
     
+    })
   })
 
 }
