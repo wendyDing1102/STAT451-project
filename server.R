@@ -2,7 +2,7 @@
 library(tidyverse)
 library(leaflet)
 
-air_quality <- read.csv("~/Desktop/451/Air_Quality.csv")
+air_quality <- read.csv("Air_Quality.csv")
 function(input, output, session) {
 
   
@@ -46,11 +46,18 @@ function(input, output, session) {
         title = str_c(input$name, " in different geographical types "),
         subtitle = input$time
       )+
-      xlab("Geo Type Name")+
-      theme_minimal()
+      xlab("Geographical Type Name")+
+      theme(axis.text.x = element_text(vjust = 0.5, hjust = 0.5, size = 13),
+            axis.title.x = element_text(vjust = 0.5, hjust = 0.5, size = 15),
+            axis.text.y = element_text(vjust = 0.5, hjust = 0.5, size = 13),
+            axis.title.y = element_text(vjust = 0.5, hjust = 0.5, size = 15),
+            plot.title = element_text(size = 20, hjust = 0.3),
+            plot.subtitle = element_text(size=15,hjust = 0.5),
+            plot.caption = element_text(size = 9))
     
     print(thePlot)
   })
+  
 
   
   output$time_series=renderPlot({
